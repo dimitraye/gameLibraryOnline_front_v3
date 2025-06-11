@@ -1,0 +1,11 @@
+<div class="user-info" *ngIf="user">
+  <h2>Mon profil</h2>
+  <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+  <p><strong>Prénom :</strong> {{ user.firstname }}</p>
+  <p><strong>Nom :</strong> {{ user.lastname }}</p>
+  <p><strong>Email :</strong> {{ user.email }}</p>
+  <p><strong>Genre :</strong> {{ user.gender ? 'Homme' : 'Femme' }}</p>
+  <p><strong>Adresse :</strong> {{ user.adress }}, {{ user.postCode }} {{ user.city }} ({{ user.country }})</p>
+  <p><strong>Téléphone :</strong> {{ user.phoneNumber }}</p>
+  <p><strong>Date de naissance :</strong> {{ user.birthDate }}</p>
+</div>
