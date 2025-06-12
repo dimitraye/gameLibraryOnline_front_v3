@@ -1,0 +1,85 @@
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Accueil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Autres jeux</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Mes jeux</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Succès</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Statistiques</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container-fluid main-content py-3">
+  <div class="row">
+    <!-- Sidebar Success Cards -->
+    <aside class="col-lg-3 d-none d-lg-block">
+      <div class="success-sidebar">
+        <div class="card mb-3 success-card" *ngFor="let success of successes">
+          <div class="card-body p-2">
+            <h6 class="card-title">{{ success.gameTitle }}</h6>
+            <p class="card-text small">{{ success.title }}</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Sections -->
+    <section class="col-12 col-lg-9">
+      <!-- Autres Jeux Carousel -->
+      <div class="mb-4">
+        <h5>Autres jeux</h5>
+        <div class="carousel-wrapper">
+          <div class="carousel d-flex overflow-auto gap-3">
+            <div class="game-card card" *ngFor="let game of otherGames">
+              <img [src]="game.image" class="card-img-top" alt="game image" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mes Jeux Carousel -->
+      <div class="mb-4">
+        <h5>Mes jeux</h5>
+        <div class="carousel-wrapper">
+          <div class="carousel d-flex overflow-auto gap-3">
+            <div class="game-card card" *ngFor="let game of myGames">
+              <img [src]="game.image" class="card-img-top" alt="game image" />
+              <div class="card-body">
+                <h6>{{ game.title }}</h6>
+                <p class="mb-1">Progression: {{ game.progress }}%</p>
+                <p class="small text-muted">{{ game.info }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistiques -->
+      <div>
+        <h5>Statistiques</h5>
+        <div class="row">
+          <div class="col-6 col-md-4" *ngFor="let stat of stats">
+            <div class="stat-box p-3 mb-3 text-center shadow-sm bg-light rounded">
+              <h6>{{ stat.label }}</h6>
+              <p class="fs-5 fw-bold">{{ stat.value }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-light text-center py-3 mt-5">
+  &copy; 2025 MonApplication - Tous droits réservés
+</footer>

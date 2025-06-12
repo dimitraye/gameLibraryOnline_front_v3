@@ -34,8 +34,8 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (response) => {
-        if (response.token) {
-          localStorage.setItem('token', response.token);
+        if (response.token && response.role) {
+          this.authService.saveAuthData(response.token, response.role);
           console.log('Token juste avant appel à me() :', localStorage.getItem('token'));
 
           this.authService.me().subscribe({

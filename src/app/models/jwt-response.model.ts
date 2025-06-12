@@ -2,5 +2,7 @@ import { User } from "./user.model";
 
 export interface JwtResponse {
   token: string;
-  user: User;
+  role: string;
+  message: string;
+  success: boolean;
 }
