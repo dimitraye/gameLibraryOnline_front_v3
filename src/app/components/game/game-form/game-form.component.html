@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Ajouter un nouveau jeu</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="gameForm" class="game-form">
+
+    <!-- Titre -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre du jeu</label>
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Ex: The Legend of Zelda" required>
+    </div>
+
+    <!-- Plateforme (une seule) -->
+    <div class="mb-3">
+      <label for="platforms" class="form-label">Plateforme</label>
+      <select class="form-select" id="platforms" formControlName="platform">
+        <option value="">-- Choisir une plateforme --</option>
+        <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>
+      </select>
+    </div>
+
+    <!-- Genre (un seul) -->
+    <div class="mb-3">
+      <label for="genres" class="form-label">Genre</label>
+      <select class="form-select" id="genres" formControlName="genre">
+        <option value="">-- Choisir un genre --</option>
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+    </div>
+
+    <!-- URL image -->
+    <div class="mb-3">
+      <label for="picture" class="form-label">URL de l'image</label>
+      <input type="url" class="form-control" id="picture" formControlName="picture" placeholder="https://exemple.com/image.jpg">
+    </div>
+
+    <!-- Bouton -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="gameForm.invalid">Enregistrer</button>
+    </div>
+
+  </form>
+</div>
