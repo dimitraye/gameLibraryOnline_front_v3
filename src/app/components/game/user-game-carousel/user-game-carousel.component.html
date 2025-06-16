@@ -1,0 +1,13 @@
+<div class="mb-4">
+  <h5>Mes jeux</h5>
+  <div class="carousel-wrapper d-flex gap-3 overflow-auto">
+    <div class="card" *ngFor="let userGame of userGames">
+      <img [src]="userGame.gamePublic.picture" class="card-img-top" [alt]="userGame.gamePublic.title">
+      <div class="card-body">
+        <h6>{{ userGame.gamePublic.title }}</h6>
+        <p>Heures jouées : {{ userGame.playHours }}h</p>
+        <p>État : {{ userGame.state }}</p>
+      </div>
+    </div>
+  </div>
+</div>

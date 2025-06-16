@@ -1,0 +1,18 @@
+.game-form {
+  max-width: 600px;
+  margin: auto;
+
+  label {
+    font-weight: 600;
+  }
+
+  select[multiple] {
+    height: 10rem;
+  }
+
+  @media (max-width: 576px) {
+    select[multiple] {
+      height: 8rem;
+    }
+  }
+}
