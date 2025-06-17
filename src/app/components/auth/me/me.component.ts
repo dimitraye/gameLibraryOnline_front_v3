@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model'; // adapte si nécessaire
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss'
 })

@@ -1,0 +1,12 @@
+<!-- Statistiques -->
+      <div>
+        <h5>Statistiques</h5>
+        <div class="row">
+          <div class="col-6 col-md-4" *ngFor="let stat of stats">
+            <div class="stat-box p-3 mb-3 text-center shadow-sm bg-light rounded">
+              <h6>{{ stat.label }}</h6>
+              <p class="fs-5 fw-bold">{{ stat.value }}</p>
+            </div>
+          </div>
+        </div>
+      </div>

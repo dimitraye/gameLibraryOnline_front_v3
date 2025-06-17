@@ -1,0 +1,15 @@
+<div class="success-sidebar">
+  <div
+    class="card mb-2 p-2 shadow-sm"
+    *ngFor="let success of successes"
+    (click)="goToSuccessDetails(success.idSuccess)"
+    style="cursor: pointer"
+  >
+    <h6 class="mb-1">
+      {{ success.userGame?.gamePublic?.title || 'Jeu inconnu' }}
+    </h6>
+    <p class="mb-0 small text-muted">
+      {{ success.description | slice:0:40 }}{{ success.description.length > 40 ? '...' : '' }}
+    </p>
+  </div>
+</div>

@@ -11,7 +11,7 @@
     <!-- Plateforme (une seule) -->
     <div class="mb-3">
       <label for="platforms" class="form-label">Plateforme</label>
-      <select class="form-select" id="platforms" formControlName="platform">
+      <select class="form-select" id="platforms" formControlName="platforms">
         <option value="">-- Choisir une plateforme --</option>
         <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>
       </select>
@@ -20,7 +20,7 @@
     <!-- Genre (un seul) -->
     <div class="mb-3">
       <label for="genres" class="form-label">Genre</label>
-      <select class="form-select" id="genres" formControlName="genre">
+      <select class="form-select" id="genres" formControlName="genres">
         <option value="">-- Choisir un genre --</option>
         <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
       </select>
