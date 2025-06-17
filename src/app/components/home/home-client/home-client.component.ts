@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { SuccessSidebarComponent } from '../../success/success-sidebar/success-sidebar.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-home-client',
@@ -10,10 +11,9 @@ import { SuccessSidebarComponent } from '../../success/success-sidebar/success-s
   styleUrl: './home-client.component.scss'
 })
 export class HomeClientComponent {
-goToDisconnect() {
-throw new Error('Method not implemented.');
-}
-   constructor(private router: Router, private route: ActivatedRoute) {}
+  
+
+   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
   
   goToGames() {
     this.router.navigate(['games'], { relativeTo: this.route });
@@ -37,6 +37,11 @@ throw new Error('Method not implemented.');
 
   goToHomeClient() {
     this.router.navigate(['/home-client/dashboard']);
+  }
+
+  logOut() {
+    this.authService.logout();              // supprime le token + rôle
+    this.router.navigate(['/login']);
   }
 
 
