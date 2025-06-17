@@ -1,0 +1,46 @@
+.statistics-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+.statistics-card {
+  background: white;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+}
+
+.statistics-header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.statistics-body {
+  .stat-box {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+  }
+
+  .stat-title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-value, .stat-title {
+    text-align: center;
+  }
+}

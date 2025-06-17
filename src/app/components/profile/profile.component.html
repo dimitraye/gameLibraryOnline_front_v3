@@ -1,0 +1,66 @@
+<div class="container py-4">
+  <div class="card shadow-sm user-profile">
+
+    <!-- En-tête avec bouton à droite -->
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <h4 class="mb-0">Profil utilisateur</h4>
+      <button class="btn btn-light btn-sm" (click)="goToEdit()">Modifier informations</button>
+    </div>
+
+    <!-- Tableau -->
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <tbody>
+          <tr>
+            <th scope="row">Pseudonyme</th>
+            <td>{{ user.username }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Prénom</th>
+            <td>{{ user.firstname || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Nom</th>
+            <td>{{ user.lastname || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Date de naissance</th>
+            <td>{{ user.birthDate || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Genre</th>
+            <td>{{ user.gender === true ? 'Homme' : user.gender === false ? 'Femme' : '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Adresse</th>
+            <td>{{ user.adress || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Code postal</th>
+            <td>{{ user.postCode || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Ville</th>
+            <td>{{ user.city || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Pays</th>
+            <td>{{ user.country || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Téléphone</th>
+            <td>{{ user.phoneNumber || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>{{ user.email || '-' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Inscrit le</th>
+            <td>{{ user.registrationDate || '-' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

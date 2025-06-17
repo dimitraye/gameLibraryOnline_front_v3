@@ -1,0 +1,36 @@
+<div class="statistics-container d-flex justify-content-center align-items-center">
+  <div class="statistics-card shadow">
+
+    <!-- En-tête -->
+    <div class="statistics-header bg-primary text-white p-3 text-center">
+      <h4 class="mb-0">Statistiques du compte : {{ statistic.user?.username || 'Utilisateur' }}</h4>
+    </div>
+
+    <!-- Corps -->
+    <div class="statistics-body p-4 row gy-4">
+      <!-- Jeu total -->
+      <div class="stat-box col-12 col-md-6">
+        <div class="stat-title bg-light p-2">Nombre de jeux total possédés</div>
+        <div class="stat-value bg-success text-white p-2">{{ statistic.nbTotalGames }}</div>
+      </div>
+
+      <!-- Jeux non commencés -->
+      <div class="stat-box col-12 col-md-6">
+        <div class="stat-title bg-light p-2">Jeux non commencés</div>
+        <div class="stat-value bg-warning text-dark p-2">{{ statistic.nbGamesNotStarted }}</div>
+      </div>
+
+      <!-- Jeux commencés -->
+      <div class="stat-box col-12 col-md-6">
+        <div class="stat-title bg-light p-2">Jeux commencés</div>
+        <div class="stat-value bg-info text-white p-2">{{ statistic.nbGamesStarted }}</div>
+      </div>
+
+      <!-- Jeux terminés -->
+      <div class="stat-box col-12 col-md-6">
+        <div class="stat-title bg-light p-2">Jeux terminés</div>
+        <div class="stat-value bg-secondary text-white p-2">{{ statistic.ngGamesFinished }}</div>
+      </div>
+    </div>
+  </div>
+</div>

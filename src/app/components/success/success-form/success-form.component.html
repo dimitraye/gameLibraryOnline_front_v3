@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Ajouter un nouveau Succès</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="successForm" class="game-form">
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description du succès</label>
+      <input type="text" class="form-control" id="description" formControlName="description" placeholder="Ex: Atteindre le niveau 100" required>
+    </div>
+
+    <!-- Succès obtenu ? -->
+    <div class="mb-3">
+      <label class="form-label d-block">Succès obtenu ?</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input"
+               type="radio"
+               id="obtainedYes"
+               [checked]="successForm.get('obtained')?.value === true"
+               (click)="toggleObtained(true)">
+        <label class="form-check-label" for="obtainedYes">Oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input"
+               type="radio"
+               id="obtainedNo"
+               [checked]="successForm.get('obtained')?.value === false"
+               (click)="toggleObtained(false)">
+        <label class="form-check-label" for="obtainedNo">Non</label>
+      </div>
+    </div>
+
+    <!-- Bouton -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="successForm.invalid">Enregistrer</button>
+    </div>
+
+  </form>
+</div>
