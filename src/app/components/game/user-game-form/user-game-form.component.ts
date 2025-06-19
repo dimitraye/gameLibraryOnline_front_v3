@@ -8,11 +8,7 @@ import { UserGame } from '../../../models/user-game';
 import { VideoGameGenre } from '../../../models/video-game-genre';
 import { GamePublicService } from '../../../services/game-public-service.service';
 import { UserGameService } from '../../../services/user-game-service.service';
-import { ProgressionService } from '../../../services/progression.service';
-import { ProgressionDTO } from '../../../models/progression-dto';
 import { Platform } from '../../../models/platform';
-
-
 
 @Component({
   selector: 'app-user-game-form',
@@ -26,34 +22,30 @@ export class UserGameFormComponent implements OnInit {
   platforms = Object.values(Platform);
   genres = Object.values(VideoGameGenre);
   states = [
-  { label: 'Non commencé', value: GameStatus.NOT_STARTED },
-  { label: 'En cours', value: GameStatus.IN_PROGRESS },
-  { label: 'Terminé', value: GameStatus.COMPLETED }
-];
+    { label: 'Non commencé', value: GameStatus.NOT_STARTED },
+    { label: 'En cours', value: GameStatus.IN_PROGRESS },
+    { label: 'Terminé', value: GameStatus.COMPLETED }
+  ];
 
-  userId = 1; // À remplacer par l'utilisateur connecté
+  userId = 1; // À remplacer dynamiquement plus tard
 
   constructor(
     private fb: FormBuilder,
     private gameService: GamePublicService,
     private userGameService: UserGameService,
-    private progressionService: ProgressionService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.userGameForm = this.fb.group({
-    title: ['', Validators.required],
-    platforms: ['', Validators.required],
-    genres: ['', Validators.required],
-    picture: [''],
-    datePurchase: [''],
-    playHours: [0, [Validators.min(0)]],
-    state: ['', Validators.required],
-    progression: [''],
-    percentageCompletion: [0, [Validators.min(0), Validators.max(100)]]
-  });
-
+      title: ['', Validators.required],
+      platforms: ['', Validators.required],
+      genres: ['', Validators.required],
+      picture: [''],
+      datePurchase: [''],
+      playHours: [0, [Validators.min(0)]],
+      state: ['', Validators.required]
+    });
   }
 
   onSubmit(): void {
@@ -75,29 +67,13 @@ export class UserGameFormComponent implements OnInit {
             const updatePayload: Partial<UserGame> = {
               datePurchase: form.datePurchase,
               playHours: form.playHours,
-              state: form.state
+              state: form.state.value // ✅ correction
             };
 
             this.userGameService.updateUserGame(userGame.id!, updatePayload).subscribe({
               next: () => {
-                // Étape progression si renseignée
-                if (form.progression && form.progression.trim() !== '') {
-                  const progressionPayload: ProgressionDTO = {
-                    detailsProgression: form.progression,
-                    percentageCompletion: form.percentageCompletion || 0,
-                    userGame: { id: userGame.id! }
-                  };
-                  this.progressionService.create(progressionPayload).subscribe({
-                    next: () => {
-                      alert('Jeu + progression ajoutés !');
-                      this.router.navigate(['/home-client/user-games']);
-                    },
-                    error: () => alert("Progression : erreur lors de l'ajout.")
-                  });
-                } else {
-                  alert('Jeu ajouté sans progression.');
-                  this.router.navigate(['/home-client/user-games']);
-                }
+                alert('Jeu ajouté à votre bibliothèque.');
+                this.router.navigate(['/home-client/user-games']);
               },
               error: () => alert("Erreur lors de la mise à jour du jeu.")
             });
@@ -108,5 +84,4 @@ export class UserGameFormComponent implements OnInit {
       error: () => alert("Erreur lors de l’enregistrement du jeu public.")
     });
   }
-
 }

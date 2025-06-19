@@ -55,22 +55,6 @@
       </select>
     </div>
 
-    <!-- Partie Progression -->
-    <div class="col-12 pt-3">
-      <h5>Progression (facultatif)</h5>
-    </div>
-
-    <div class="col-12">
-      <label class="form-label">Détail de la progression</label>
-      <textarea class="form-control" formControlName="progression" rows="3" placeholder="Ex: J'ai terminé l'acte 1..."></textarea>
-    </div>
-
-    <div class="col-md-6">
-      <label class="form-label">Pourcentage de complétion (%)</label>
-      <input type="number" class="form-control" formControlName="percentageCompletion" min="0" max="100">
-    </div>
-
-
     <!-- Bouton -->
     <div class="col-12 text-end">
       <button type="submit" class="btn btn-primary" [disabled]="userGameForm.invalid">

@@ -30,4 +30,14 @@ export class UserGamesComponent implements OnInit {
   goToUserGameForm(): void {
     this.router.navigate(['/home-client/user-game-form']);
   }
+
+  goToUserGameDetails(userGameId: number | undefined): void {
+    if (userGameId == null) {
+      console.warn("ID du UserGame manquant, navigation annulée.");
+      return;
+    }
+
+    this.router.navigate(['/home-client/user-game-details', userGameId]);
+  }
+
 }
