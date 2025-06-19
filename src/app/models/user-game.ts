@@ -6,7 +6,7 @@ import { Success } from "./success";
 
 
 export interface UserGame {
-  id: number;
+  id?: number;
   userId: number;
   gamePublicId: number;
   datePurchase: string;

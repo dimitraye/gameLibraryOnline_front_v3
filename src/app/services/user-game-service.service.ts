@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserGame } from '../models/user-game';
+import { GamePublic } from '../models/game-public';
 
 @Injectable({ providedIn: 'root' })
 export class UserGameService {
@@ -21,11 +22,15 @@ export class UserGameService {
     return this.http.post<UserGame>(this.apiUrl, userGame);
   }
 
-  update(userGame: UserGame): Observable<UserGame> {
-    return this.http.put<UserGame>(`${this.apiUrl}/${userGame.id}`, userGame);
+  updateUserGame(userGameId: number, userGame: Partial<UserGame>): Observable<UserGame> {
+    return this.http.put<UserGame>(`${this.apiUrl}/${userGameId}`, userGame);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  addGameToUser(userId: number, game: GamePublic): Observable<UserGame> {
+    return this.http.post<UserGame>(`${this.apiUrl}/${userId}`, game);
   }
 }

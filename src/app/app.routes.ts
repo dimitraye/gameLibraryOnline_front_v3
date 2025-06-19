@@ -29,6 +29,7 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 
 import { authGuard } from './guards/auth.guard';
 import { unauthGuard } from './guards/unauth-guard';
+import { UserGameFormComponent } from './components/game/user-game-form/user-game-form.component';
 
 export const routes: Routes = [
   // Auth
@@ -53,6 +54,7 @@ export const routes: Routes = [
       { path: 'game-details/:id', component: GameDetailsComponent },
       { path: 'game-form', component: GameFormComponent },
       { path: 'user-games', component: UserGamesComponent },
+      { path: 'user-game-form', component: UserGameFormComponent },
 
       { path: 'success', component: SuccessListComponent },
       { path: 'success-details/:id', component: SuccessDetailsComponent },
@@ -85,6 +87,7 @@ export const routes: Routes = [
       { path: 'game-details/:id', component: GameDetailsComponent },
       { path: 'game-form', component: GameFormComponent },
       { path: 'user-games', component: UserGamesComponent },
+      { path: 'user-game-form', component: UserGameFormComponent },
 
       { path: 'success', component: SuccessListComponent },
       { path: 'success-details/:id', component: SuccessDetailsComponent },
