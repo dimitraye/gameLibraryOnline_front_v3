@@ -29,6 +29,9 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 
 import { authGuard } from './guards/auth.guard';
 import { unauthGuard } from './guards/unauth-guard';
+import { UserGameFormComponent } from './components/game/user-game-form/user-game-form.component';
+import { UserGameDetailsComponent } from './components/game/user-game-details/user-game-details.component';
+import { GameSuccessComponent } from './components/success/game-success/game-success.component';
 
 export const routes: Routes = [
   // Auth
@@ -53,8 +56,10 @@ export const routes: Routes = [
       { path: 'game-details/:id', component: GameDetailsComponent },
       { path: 'game-form', component: GameFormComponent },
       { path: 'user-games', component: UserGamesComponent },
+      { path: 'user-game-form', component: UserGameFormComponent },
 
       { path: 'success', component: SuccessListComponent },
+      { path: 'game-success/:id', component: GameSuccessComponent },
       { path: 'success-details/:id', component: SuccessDetailsComponent },
       { path: 'success-form/:id', component: SuccessFormComponent },
 
@@ -69,6 +74,8 @@ export const routes: Routes = [
       { path: 'user-list', component: UserListComponent },
       { path: 'user-details/:id', component: UserDetailsComponent },
       { path: 'user-form/:id', component: UserFormComponent },
+      { path: 'user-game-details/:id', component: UserGameDetailsComponent },
+
     ]
   },
 
@@ -85,8 +92,10 @@ export const routes: Routes = [
       { path: 'game-details/:id', component: GameDetailsComponent },
       { path: 'game-form', component: GameFormComponent },
       { path: 'user-games', component: UserGamesComponent },
+      { path: 'user-game-form', component: UserGameFormComponent },
 
       { path: 'success', component: SuccessListComponent },
+      { path: 'game-success/:id', component: GameSuccessComponent },
       { path: 'success-details/:id', component: SuccessDetailsComponent },
       { path: 'success-form/:id', component: SuccessFormComponent },
 

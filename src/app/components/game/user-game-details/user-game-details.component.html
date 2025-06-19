@@ -1,0 +1,64 @@
+<div class="container mt-4 user-game-details">
+    <div class="card shadow-lg">
+        <div class="row g-0">
+            <!-- Image du jeu -->
+            <div class="col-md-4 text-center bg-light p-3">
+                <img [src]="userGame?.gamePublic?.picture" class="img-fluid rounded" alt="Image du jeu" />
+            </div>
+
+            <!-- Infos du jeu -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ userGame?.gamePublic?.title }}</h3>
+
+                    <p class="card-text">
+                        <strong>Plateformes :</strong>
+                        {{ userGame?.gamePublic?.platforms?.join(', ') || 'Non spécifié' }}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Genres :</strong>
+                        {{ userGame?.gamePublic?.genres?.join(', ') || 'Non spécifié' }}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Date d'achat :</strong>
+                        <span *ngIf="userGame?.datePurchase; else noDate">
+                            {{ userGame?.datePurchase | date:'longDate' }}
+                        </span>
+                        <ng-template #noDate>Non renseignée</ng-template>
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Heures jouées :</strong>
+                        {{ userGame?.playHours || 0 }} h
+                    </p>
+
+                    <p class="card-text">
+                        <strong>État :</strong>
+                        {{ translateState(userGame?.state) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+        <button class="btn btn-outline-primary" (click)="goToEdit()">
+            ✏️ Modifier les infos personnelles
+        </button>
+
+        <button class="btn btn-outline-success" (click)="goToProgression()">
+            📈 Ajouter / Modifier progression
+        </button>
+
+        <button class="btn btn-outline-secondary" (click)="goToCommentaries()">
+            💬 Voir mes commentaires
+        </button>
+
+        <button class="btn btn-outline-warning" (click)="goToGameSuccess()">
+            🏆 Succès
+        </button>
+    </div>
+</div>

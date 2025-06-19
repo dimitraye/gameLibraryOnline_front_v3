@@ -8,4 +8,13 @@
   button {
     white-space: nowrap;
   }
+
+  .card-img-top {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  .card-body {
+    font-size: 0.95rem;
+  }
 }

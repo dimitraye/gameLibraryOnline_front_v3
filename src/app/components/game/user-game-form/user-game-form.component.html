@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Ajouter un jeu à ma bibliothèque</h2>
+
+  <form [formGroup]="userGameForm" (ngSubmit)="onSubmit()" class="user-game-form row g-3">
+
+    <!-- Partie Jeu Public -->
+    <div class="col-12">
+      <h5>Informations du jeu</h5>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Titre</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="Ex: The Witcher 3" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Plateforme</label>
+      <select class="form-select" formControlName="platforms">
+        <option *ngFor="let p of platforms" [value]="p">{{ p }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Genre</label>
+      <select class="form-select" formControlName="genres">
+        <option *ngFor="let g of genres" [value]="g">{{ g }}</option>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">URL de l'image</label>
+      <input type="url" class="form-control" formControlName="picture" placeholder="https://...">
+    </div>
+
+    <!-- Partie UserGame -->
+    <div class="col-12 pt-3">
+      <h5>Détails d'ajout à votre bibliothèque</h5>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Date d'achat</label>
+      <input type="date" class="form-control" formControlName="datePurchase">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Heures jouées</label>
+      <input type="number" class="form-control" formControlName="playHours" min="0">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">État</label>
+      <select class="form-select" formControlName="state">
+        <option value="">-- Choisir un état --</option>
+        <option *ngFor="let s of states" [value]="s.value">{{ s.label }}</option>
+      </select>
+    </div>
+
+    <!-- Bouton -->
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="userGameForm.invalid">
+        Enregistrer
+      </button>
+    </div>
+
+  </form>
+</div>

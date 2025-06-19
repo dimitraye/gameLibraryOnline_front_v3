@@ -9,3 +9,39 @@
     white-space: nowrap;
   }
 }
+.card {
+  border-radius: 1rem;
+
+  h3 {
+    font-weight: 600;
+  }
+
+  button {
+    white-space: nowrap;
+  }
+}
+
+.game-card {
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  .card-img-top {
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  .card-body {
+    font-size: 0.9rem;
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+}

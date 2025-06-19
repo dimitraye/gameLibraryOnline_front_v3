@@ -3,7 +3,7 @@ import { VideoGameGenre } from "./video-game-genre";
 
 
 export interface GamePublic {
-  id: number;
+  id?: number;
   title: string;
   platforms: Platform[];
   genres: VideoGameGenre[];
