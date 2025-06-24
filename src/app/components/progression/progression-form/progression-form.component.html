@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <form (ngSubmit)="onSubmit()" #progressionForm="ngForm" class="card shadow p-4">
+    <h4 class="mb-4">📈 Progression du jeu</h4>
+
+    <div class="mb-3">
+      <label for="detailsProgression" class="form-label">Détails de la progression</label>
+      <textarea
+        class="form-control"
+        id="detailsProgression"
+        name="detailsProgression"
+        [(ngModel)]="progression.detailsProgression"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="percentageCompletion" class="form-label">Pourcentage de complétion (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        id="percentageCompletion"
+        name="percentageCompletion"
+        [(ngModel)]="progression.percentageCompletion"
+        min="0"
+        max="100"
+        required
+      />
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="submit" class="btn btn-success">
+        💾 Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

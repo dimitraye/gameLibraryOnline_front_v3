@@ -19,7 +19,9 @@ import { Platform } from '../../../models/platform';
 })
 export class UserGameFormComponent implements OnInit {
   userGameForm!: FormGroup;
+  selectedFile!: File;
   platforms = Object.values(Platform);
+  pictureFile!: File;
   genres = Object.values(VideoGameGenre);
   states = [
     { label: 'Non commencé', value: GameStatus.NOT_STARTED },
@@ -27,7 +29,7 @@ export class UserGameFormComponent implements OnInit {
     { label: 'Terminé', value: GameStatus.COMPLETED }
   ];
 
-  userId = 1; // À remplacer dynamiquement plus tard
+  userId = 1; // à remplacer plus tard par l'ID réel
 
   constructor(
     private fb: FormBuilder,
@@ -41,47 +43,57 @@ export class UserGameFormComponent implements OnInit {
       title: ['', Validators.required],
       platforms: ['', Validators.required],
       genres: ['', Validators.required],
-      picture: [''],
       datePurchase: [''],
       playHours: [0, [Validators.min(0)]],
       state: ['', Validators.required]
     });
   }
 
-  onSubmit(): void {
-    if (this.userGameForm.invalid) return;
-
-    const form = this.userGameForm.value;
-
-    const gamePublic: Partial<GamePublic> = {
-      title: form.title,
-      platforms: [form.platforms],
-      genres: [form.genres],
-      picture: form.picture
-    };
-
-    this.gameService.create(gamePublic as GamePublic).subscribe({
-      next: (createdGame: GamePublic) => {
-        this.userGameService.addGameToUser(this.userId, createdGame).subscribe({
-          next: (userGame: UserGame) => {
-            const updatePayload: Partial<UserGame> = {
-              datePurchase: form.datePurchase,
-              playHours: form.playHours,
-              state: form.state.value // ✅ correction
-            };
-
-            this.userGameService.updateUserGame(userGame.id!, updatePayload).subscribe({
-              next: () => {
-                alert('Jeu ajouté à votre bibliothèque.');
-                this.router.navigate(['/home-client/user-games']);
-              },
-              error: () => alert("Erreur lors de la mise à jour du jeu.")
-            });
-          },
-          error: () => alert("Ce jeu est déjà dans votre bibliothèque.")
-        });
-      },
-      error: () => alert("Erreur lors de l’enregistrement du jeu public.")
-    });
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.pictureFile = input.files[0];
+    }
   }
+
+
+  onSubmit(): void {
+  if (this.userGameForm.invalid || !this.pictureFile) {
+    alert("Tous les champs sont obligatoires, y compris l'image.");
+    return;
+  }
+
+  const form = this.userGameForm.value;
+
+  const formData = new FormData();
+  formData.append('title', form.title);
+  formData.append('platforms', form.platforms);
+  formData.append('genres', form.genres);
+  formData.append('picture', this.pictureFile);
+
+  this.gameService.uploadWithImage(formData).subscribe({
+    next: (createdGame: GamePublic) => {
+      this.userGameService.addGameToUser(this.userId, createdGame).subscribe({
+        next: (userGame: UserGame) => {
+          const updatePayload: Partial<UserGame> = {
+            datePurchase: form.datePurchase,
+            playHours: form.playHours,
+            state: form.state.value
+          };
+
+          this.userGameService.updateUserGame(userGame.id!, updatePayload).subscribe({
+            next: () => {
+              alert('Jeu ajouté avec image !');
+              this.router.navigate(['/home-client/user-games']);
+            },
+            error: () => alert("Erreur mise à jour UserGame.")
+          });
+        },
+        error: () => alert("Ce jeu est déjà dans votre bibliothèque.")
+      });
+    },
+    error: () => alert("Erreur lors de l’upload du jeu public.")
+  });
+}
+
 }

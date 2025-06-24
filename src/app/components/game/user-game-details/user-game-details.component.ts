@@ -57,4 +57,9 @@ export class UserGameDetailsComponent implements OnInit {
     this.router.navigate(['/home-client/game-success', this.userGameId]);
   }
 
+  goToProgressionForm(): void {
+    this.router.navigate(['/home-client/user-game-progression', this.userGameId]);
+  }
+
+
 }

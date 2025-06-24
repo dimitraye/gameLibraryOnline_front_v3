@@ -14,7 +14,10 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let game of games">
             <div class="game-card card h-100 shadow-sm">
-              <img *ngIf="game.picture" [src]="game.picture" class="card-img-top" alt="Image de {{ game.title }}">
+            <img *ngIf="game.picture"
+                [src]="baseUrl + game.picture"
+                class="card-img-top"
+                alt="Image de {{ game.title }}">
               <div class="card-body">
                 <h5 class="card-title">{{ game.title }}</h5>
                 <p class="card-text">

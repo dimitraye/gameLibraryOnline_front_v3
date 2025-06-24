@@ -29,4 +29,10 @@ export class GamePublicService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  uploadWithImage(formData: FormData): Observable<GamePublic> {
+    return this.http.post<GamePublic>(`${this.apiUrl}/upload`, formData);
+  }
+
+
 }

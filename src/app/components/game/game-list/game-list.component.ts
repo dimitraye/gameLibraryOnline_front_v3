@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GamePublic } from '../../../models/game-public';
 import { GamePublicService } from '../../../services/game-public-service.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-games',
@@ -13,6 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class GameListComponent implements OnInit{
   games: GamePublic[] = [];
+  baseUrl = environment.apiUrl;
+
 
   constructor(
     private router: Router,

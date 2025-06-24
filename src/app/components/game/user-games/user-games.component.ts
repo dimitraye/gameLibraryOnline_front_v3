@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserGameService } from '../../../services/user-game-service.service';
 import { UserGame } from '../../../models/user-game';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-games',
@@ -14,6 +15,7 @@ import { UserGame } from '../../../models/user-game';
 })
 export class UserGamesComponent implements OnInit {
   userGames: UserGame[] = [];
+  baseUrl = environment.apiUrl;
 
   constructor(
     private userGameService: UserGameService,

@@ -10,6 +10,6 @@ export interface Progression {
   detailsProgression: string;
   percentageCompletion: number;
 
-  user: User;
-  userGame: UserGame;
+  user?: User;
+  userGame: UserGame | null;
 }
