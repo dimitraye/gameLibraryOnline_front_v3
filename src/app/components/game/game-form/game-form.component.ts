@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class GameFormComponent implements OnInit {
   gameForm!: FormGroup;
   platforms = Object.values(Platform);
+  pictureFile!: File;
   genres = Object.values(VideoGameGenre);
 
   constructor(
@@ -34,18 +35,20 @@ export class GameFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.gameForm.invalid) return;
+    if (this.gameForm.invalid || !this.pictureFile) {
+      alert("Tous les champs sont obligatoires, y compris l'image.");
+      return;
+    }
 
     const formValue = this.gameForm.value;
 
-    const newGame = {
-      title: formValue.title,
-      platforms: [formValue.platforms], // converti en tableau
-      genres: [formValue.genres],       // idem
-      picture: formValue.picture
-    };
+    const formData = new FormData();
+    formData.append('title', formValue.title);
+    formData.append('platforms', formValue.platforms);
+    formData.append('genres', formValue.genres);
+    formData.append('picture', this.pictureFile);
 
-    this.gameService.create(newGame).subscribe({
+    this.gameService.uploadWithImage(formData).subscribe({
       next: () => {
         alert('Jeu ajouté avec succès !');
         this.router.navigate(['/home-client/games']);
@@ -56,4 +59,13 @@ export class GameFormComponent implements OnInit {
       }
     });
   }
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.pictureFile = input.files[0];
+    }
+  }
+
 }

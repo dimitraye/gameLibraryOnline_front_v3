@@ -15,7 +15,13 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let game of userGames">
             <div class="card h-100 shadow-sm" (click)="goToUserGameDetails(game.id)">
-              <img [src]="game.gamePublic.picture" class="card-img-top" alt="{{ game.gamePublic.title }}" style="object-fit: cover; height: 150px;">
+              
+              <!-- Image du jeu public -->
+              <img *ngIf="game.gamePublic.picture"
+                  [src]="baseUrl + game.gamePublic.picture"
+                  class="card-img-top"
+                  alt="Image de {{ game.gamePublic.title }}">
+
               <div class="card-body">
                 <h5 class="card-title">{{ game.gamePublic.title }}</h5>
                 <p class="card-text">
@@ -25,6 +31,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
       <ng-template #noGames>

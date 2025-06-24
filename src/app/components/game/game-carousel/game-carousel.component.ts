@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamePublic } from '../../../models/game-public';
 import { GamePublicService } from '../../../services/game-public-service.service';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { GamePublicService } from '../../../services/game-public-service.service
 })
 export class GameCarouselComponent implements OnInit {
   games: GamePublic[] = [];
+  baseUrl = environment.apiUrl;
 
   constructor(private gameService: GamePublicService) {}
 

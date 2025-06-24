@@ -26,11 +26,11 @@
       </select>
     </div>
 
-    <!-- URL image -->
     <div class="mb-3">
-      <label for="picture" class="form-label">URL de l'image</label>
-      <input type="url" class="form-control" id="picture" formControlName="picture" placeholder="https://exemple.com/image.jpg">
+      <label for="pictureFile" class="form-label">Image du jeu</label>
+      <input type="file" class="form-control" id="pictureFile" (change)="onFileSelected($event)" accept="image/*">
     </div>
+
 
     <!-- Bouton -->
     <div class="text-end">

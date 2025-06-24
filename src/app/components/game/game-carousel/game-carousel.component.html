@@ -2,7 +2,10 @@
   <h5>Autres jeux</h5>
   <div class="carousel-wrapper d-flex gap-3 overflow-auto">
     <div class="card" *ngFor="let game of games">
-      <img [src]="game.picture" class="card-img-top" [alt]="game.title">
+      <img *ngIf="game.picture"
+           [src]="baseUrl + game.picture"
+           class="card-img-top"
+           [alt]="game.title">
     </div>
   </div>
 </div>
