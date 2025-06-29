@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { GamePublic } from '../../../models/game-public';
 import { GamePublicService } from '../../../services/game-public-service.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
+import { SessionService } from '../../../services/session.service'; // <-- Ajoute ceci
 
 @Component({
   selector: 'app-games',
@@ -12,14 +13,14 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './game-list.component.html',
   styleUrl: './game-list.component.scss'
 })
-export class GameListComponent implements OnInit{
+export class GameListComponent implements OnInit {
   games: GamePublic[] = [];
   baseUrl = environment.apiUrl;
 
-
   constructor(
     private router: Router,
-    private gamePublicService: GamePublicService
+    private gamePublicService: GamePublicService,
+    private sessionService: SessionService // <-- Injection ici
   ) {}
 
   ngOnInit(): void {
@@ -28,13 +29,10 @@ export class GameListComponent implements OnInit{
       error: (err) => console.error('Erreur récupération jeux :', err)
     });
   }
-  
-
 
   goToGameForm(): void {
-    // Redirection vers le formulaire (logique à implémenter plus tard)
-    this.router.navigate(['/home-client/game-form']);
-    console.log('Redirection vers le formulaire d’ajout');
+    const path = this.sessionService.getHomePath();
+    this.router.navigate([`${path}/game-form`]);
+    console.log('Redirection vers :', `${path}/game-form`);
   }
-
 }

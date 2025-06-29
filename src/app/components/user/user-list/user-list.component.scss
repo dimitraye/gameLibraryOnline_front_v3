@@ -1,0 +1,10 @@
+.container {
+  max-width: 800px;
+}
+
+@media (max-width: 576px) {
+  .btn-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
