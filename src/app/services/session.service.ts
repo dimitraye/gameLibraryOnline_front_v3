@@ -24,5 +24,18 @@ export class SessionService {
     this.isLogged = false;
     this.isLoggedSubject.next(false);
   }
+
+    getHomePath(): string {
+      const role = this.getUser()?.role;
+      return role === 'admin' ? '/home-admin' : '/home-client';
+    }
+
+    getUser(): User | undefined {
+      return this.user;
+    }
+
+
+  
+
 }
 
