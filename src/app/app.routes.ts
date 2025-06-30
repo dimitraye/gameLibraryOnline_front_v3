@@ -33,6 +33,7 @@ import { UserGameFormComponent } from './components/game/user-game-form/user-gam
 import { UserGameDetailsComponent } from './components/game/user-game-details/user-game-details.component';
 import { GameSuccessComponent } from './components/success/game-success/game-success.component';
 import { ProgressionFormComponent } from './components/progression/progression-form/progression-form.component';
+import { roleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   // Auth
@@ -48,7 +49,8 @@ export const routes: Routes = [
   {
     path: 'home-client',
     component: HomeClientComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['CLIENT'] },
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
@@ -87,7 +89,8 @@ export const routes: Routes = [
   {
     path: 'home-admin',
     component: HomeAdminComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
